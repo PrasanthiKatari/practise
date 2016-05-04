@@ -1,4 +1,4 @@
-angular.module("contactsApp", ['ngRoute'])
+angular.module("contactapp", ['ngRoute'])
     .config(function($routeProvider) {
         $routeProvider
             .when("/", {
@@ -34,6 +34,7 @@ angular.module("contactsApp", ['ngRoute'])
         this.createContact = function(contact) {
             return $http.post("/contacts", contact).
             then(function(response) {
+                window.alert(response);
                 return response;
             }, function(response) {
                 alert("Error creating contact.");
@@ -43,6 +44,7 @@ angular.module("contactsApp", ['ngRoute'])
             var url = "/contacts/" + contactId;
             return $http.get(url).
             then(function(response) {
+
                 return response;
             }, function(response) {
                 alert("Error finding this contact.");
@@ -72,6 +74,7 @@ angular.module("contactsApp", ['ngRoute'])
     })
     .controller("ListController", function(contacts, $scope) {
         $scope.contacts = contacts.data;
+        console.log( $scope.contacts);
     })
     .controller("NewContactController", function($scope, $location, Contacts) {
         $scope.back = function() {
